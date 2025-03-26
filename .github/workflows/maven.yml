@@ -179,7 +179,7 @@ jobs:
           echo "Setting up Virtual Environment..."
           python -m venv myenv
           source myenv/bin/activate
-          pip install -r PyTest-KMS-HDFS/requirements.txt
+          pip install -r Pytest-KMS-HDFS/requirements.txt
       
           echo "Running Functional Tests..."
           cd Pytest-KMS-HDFS
