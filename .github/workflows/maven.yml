@@ -173,11 +173,19 @@ jobs:
                   echo "Container $container is NOT running!";
               fi
           done
-          
-          if [[ $flag == true ]]; then
-              echo "All required containers are up and running";
-              docker stop $(docker ps -q) && docker rm $(docker ps -aq);
-          else
-              docker stop $(docker ps -q) && docker rm $(docker ps -aq);
-              exit 1;
-          fi
+
+      - name: Run Functional Tests
+        run: |
+          echo "Setting up Virtual Environment..."
+          python -m venv myenv
+          source myenv/bin/activate
+          pip install -r PyTest-KMS-HDFS/requirements.txt
+      
+          echo "Running Functional Tests..."
+          cd PyTest-KMS-HDFS
+          pytest -vs test_kms/
+          pytest -vs test_hdfs/
+
+      - name: Cleanup Containers
+        run: |
+          docker stop $(docker ps -q) && docker rm $(docker ps -aq)
