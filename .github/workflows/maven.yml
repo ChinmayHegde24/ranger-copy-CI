@@ -182,7 +182,7 @@ jobs:
           pip install -r PyTest-KMS-HDFS/requirements.txt
       
           echo "Running Functional Tests..."
-          cd PyTest-KMS-HDFS
+          cd Pytest-KMS-HDFS
           pytest -vs test_kms/
           pytest -vs test_hdfs/
 
